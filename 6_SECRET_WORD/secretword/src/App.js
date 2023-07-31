@@ -33,7 +33,7 @@ function App() {
 
   const guessesQty = 3;
 
-  const pickWordAndCategory = () => {
+  const pickWordAndCategory = useCallback(() => {
     //pick a random word
     const categories = Object.keys(words);
     const category = categories[Math.floor(Math.random() * Object.keys(categories).length)];
@@ -46,10 +46,13 @@ function App() {
     console.log(word);
 
     return { word, category };
-  }
+  }, [words]);
 
   // starts the secrets word game
-  const startGame = () => {
+  const startGame = useCallback(() => {
+    // clear all letters
+    clearLetterStates();
+
     //pick word and pick category
     const { word, category } = pickWordAndCategory();
 
@@ -66,7 +69,7 @@ function App() {
     setLetters(wordLetters);
 
     setGameStage(stages[1].name);
-  }
+  }, [pickWordAndCategory]);
 
   // process the letter input
   const verifyLetter = (letter) => {
@@ -92,14 +95,29 @@ function App() {
     setWrongLetters([]);
   }
 
+  // check id guesses ended
   useEffect(() => {
-    if(guesses <= 0){
+    if (guesses <= 0) {
       // reset all states
       clearLetterStates();
 
       setGameStage(stages[2].name);
     }
   }, [guesses])
+
+  // check win condition
+  useEffect(() => {
+    const uniqueLetters = [...new Set(letters)];
+
+    //win condition
+    if (guessedLetters.length === uniqueLetters.length) {
+      //add score
+      setScore((actualScore) => (actualScore += 100));
+
+      //restart game with new word
+      startGame();
+    }
+  }, [guessedLetters, letters, startGame]);
 
   // restarts the game
   const retry = () => {
