@@ -14,10 +14,10 @@ const Game = ({verifyLetter}) => {
         <span className="letter">A</span>
         <span className="blankSquare"></span>
       </div>
-      <div className="leterContainer">
+      <div className="letterContainer">
         <p>Tente adivinhar uma letra da palavra:</p>
         <form>
-          <input type="text" name='letter' maxLength="1" required />
+          <input type="text" name="letter" maxLength="1" required />
           <button>Jogar!</button>
         </form>
       </div>
