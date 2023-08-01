@@ -24,6 +24,11 @@
       "name": "controle ps4",
       "price": "350.00",
       "id": 5
+    },
+    {
+      "name": "camisa bahia",
+      "price": "349",
+      "id": 6
     }
   ]
 }
