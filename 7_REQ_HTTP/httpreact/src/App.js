@@ -28,10 +28,20 @@ function App() {
 
     const res = await fetch(url, {
       method: "POST",
-      headers: {"Content-type": "application/json"},
+      headers: { "Content-type": "application/json" },
       body: JSON.stringify(product)
     })
-  }
+
+    //3- carregamento dinâmico
+    const addedProduct = await res.json();
+
+    setProducts((prevProducts) => [...prevProducts, addedProducts]);
+
+    setName("");
+    setPrice("");
+  };
+
+
 
   return (
     <div className="App">
