@@ -52,6 +52,11 @@ function App() {
     setPrice("");
   };
 
+  // 6- desafio
+  const handleRemove = (id) => {
+    httpConfig(id, "DELETE");
+  }
+
   return (
     <div className="App">
       <h1>Lista de Produtos</h1>
@@ -63,6 +68,7 @@ function App() {
           {items && items.map((item) => (
             <li key={item.id}>
               {item.name} - {item.price}
+              <button onClick={() => handleRemove(item.id)}>Excluir</button>
             </li>
           ))}
         </ul>
@@ -77,9 +83,11 @@ function App() {
             Preço:
             <input type="number" name="price" value={price} onChange={(e) => setPrice(e.target.value)} />
           </label>
-          {/* 7- state de loading no POST */}
-          {loading && <input type="submit" disabled value="Aguarde" />}
-          {!loading && <input type="submit" value="Criar" />}
+          <p>
+            {/* 7- state de loading no POST */}
+            {loading && <input type="submit" disabled value="Aguarde" />}
+            {!loading && <input type="submit" value="Criar" />}
+          </p>
         </form>
       </div>
     </div>
