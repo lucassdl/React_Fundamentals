@@ -29,6 +29,16 @@
       "name": "camisa bahia",
       "price": "349",
       "id": 6
+    },
+    {
+      "name": "mouse",
+      "price": "60",
+      "id": 7
+    },
+    {
+      "name": "mouse",
+      "price": "60",
+      "id": 8
     }
   ]
 }
