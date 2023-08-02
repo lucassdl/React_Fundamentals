@@ -11,7 +11,7 @@ function App() {
   const [products, setProducts] = useState([]);
 
   // 4- custom
-  const { data: items } = useFetch(url);
+  const { data: items, httpConfig } = useFetch(url);
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
